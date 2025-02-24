@@ -62,8 +62,8 @@ try:
 
         app_config = {}
 
-        app_config['app_config_save'] = file_content[0]
-        app_config['app_config_file_name'] = file_content[1]
+        app_config['app_config_save'] = file_content[0].strip()
+        app_config['app_config_file_name'] = file_content[1].strip()
 
         main(app_config)
 
