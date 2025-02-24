@@ -9,13 +9,17 @@ def save_to_file(content: str, file_name: str):
         print(f'Dogodila se greska: {ex}.')
 
 
+def save_to_db(content: str):
+    # TODO implement db CRUD (Create, Read, Update, Delete)
+    pass
+
+
 def save_contact(contact: str):
     if app_config['app_config_save'] == 'file':
         save_to_file(content=contact, file_name=app_config['app_config_file_name'])
 
     elif app_config['app_config_save'] == 'db':
-        # TODO implement db CRUD (Create, Read, Update, Delete)
-        pass
+        save_to_db(contact)
 
 
 def main(app_config):
@@ -25,6 +29,7 @@ def main(app_config):
 
         save_contact(f'{first_name} {last_name}')
 
+        print()
         next_name = input('Zelite li dodati novi kontakt u adresar? (da/ne): ')
         if next_name.lower() != 'da':
             break
@@ -53,7 +58,7 @@ def main(app_config):
 # - https = na server POST https://api/address_book
 try:
     with open('app_config.txt', 'r') as file_reader:
-        file_content = file_reader.read()
+        file_content = file_reader.readlines()
 
         app_config = {}
 
@@ -63,4 +68,5 @@ try:
         main(app_config)
 
 except Exception as ex:
+    print(f'NIJE MOGUCE POKRENUTI APLIKACIJU')
     print(f'Dogodila se greska {ex}.')
